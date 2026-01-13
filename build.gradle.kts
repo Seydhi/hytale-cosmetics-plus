@@ -33,12 +33,12 @@ runHytale {
     jarUrl = "https://fill-data.papermc.io/v1/objects/d5f47f6393aa647759f101f02231fa8200e5bccd36081a3ee8b6a5fd96739057/paper-1.21.10-115.jar"
 }
 
-tasks {
-    // Configure Java compilation
-    compileJava {
-        options.encoding = Charsets.UTF_8.name()
-        options.release = 25
-    }
+ tasks {
+     // Configure Java compilation
+     compileJava {
+         options.encoding = Charsets.UTF_8.name()
+         options.release = 19
+     }
     
     // Configure resource processing
     processResources {
@@ -80,9 +80,9 @@ tasks {
     }
 }
 
-// Configure Java toolchain
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(25))
-    }
-}
+ // Configure Java toolchain
+ java {
+     toolchain {
+         languageVersion.set(JavaLanguageVersion.of(19))
+     }
+ }

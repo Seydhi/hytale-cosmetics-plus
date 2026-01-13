@@ -1,17 +1,17 @@
 {
-  "Group": "TemplatePlugin",
-  "Name": "TemplatePlugin",
+  "Group": "CosmeticsPlus",
+  "Name": "CosmeticsPlus",
   "Version": "1.0.0",
-  "Description": "A Hytale plugin template",
+  "Description": "Premium cosmetic system for Hytale servers with hats, wings, pets, and particles",
   "Authors": [
     {
-      "Name": "YourName",
-      "Email": "your.email@example.com",
-      "Url": "https://your-website.com"
+      "Name": "Mac",
+      "Email": "",
+      "Url": ""
     }
   ],
-  "Website": "https://github.com/yourusername/hytale-plugin-template",
-  "Main": "com.example.templateplugin.TemplatePlugin",
+  "Website": "https://github.com/Mac/hytale-cosmetics-plus",
+  "Main": "com.cosmeticsplus.CosmeticsPlusPlugin",
   "ServerVersion": "*",
   "Dependencies": {},
   "OptionalDependencies": {},

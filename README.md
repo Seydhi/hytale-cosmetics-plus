@@ -1,371 +1,144 @@
-# Hytale Plugin Template
+# CosmeticsPlus - Premium Cosmetic System for Hytale
 
-A minimal, ready-to-use template for creating Hytale plugins with modern build tools and automated testing.
+A powerful and flexible cosmetic plugin for Hytale servers featuring hats, wings, pets, and particle effects.
 
-> **✨ Builds immediately without any changes!** Clone and run `./gradlew shadowJar` to get a working plugin JAR.
+```
+   ╔═════════════════════════════╗
+   ║     🎨 COSMETICS PLUS v1.0.0      ║
+   ║    ┌───┐   35+ Cosmetics!    ║
+   ║   ╱  ╲                       ║
+   ║  │  👑  │  Premium System      ║
+   ║   ╲  ╱                       ║
+   ║    └───┘                      ║
+   ║    Hats, Wings, Pets, Particles  ║
+   ╚═════════════════════════════╝
+```
 
 ## Features
 
-✅ **Modern Build System** - Gradle with Kotlin DSL  
-✅ **Automated Testing** - Custom Gradle plugin for one-command server testing  
-✅ **Java 25** - Latest Java features  
-✅ **ShadowJar** - Automatic dependency bundling  
-✅ **CI/CD Ready** - GitHub Actions workflow included  
-✅ **Minimal Structure** - Only essential files, write your own code  
+- **35 Unique Cosmetics** across 4 categories:
+  - 10 Hats (Crowns, Wizard Hats, Party Hats, etc.)
+  - 10 Wings (Angel, Dragon, Butterfly, etc.)
+  - 5 Pets (Wolf, Cat, Dragon, Bunny, Parrot)
+  - 10 Particle Effects (Hearts, Stars, Fire, Ice, etc.)
 
----
+- **Full Command System**:
+  - `/cosmetic list` - View all available cosmetics
+  - `/cosmetic equip <id>` - Equip a cosmetic
+  - `/cosmetic unequip <type>` - Unequip a cosmetic
+  - `/cosmetic info <id>` - Get cosmetic details
+  - `/unlock <id>` - Unlock a cosmetic
+  - `/cosmetic menu` - Open cosmetic menu (coming soon)
 
-## Quick Start
+- **Player Data Storage** - JSON-based storage system
+- **Permission System** - Full permission support for all cosmetics
+- **Configurable** - Easy-to-use configuration file
+- **EULA Compliant** - All cosmetics are cosmetic-only (no pay-to-win)
 
-### Prerequisites
+## Installation
 
-- **Java 25 JDK** - [Download here](https://www.oracle.com/java/technologies/downloads/)
-- **IntelliJ IDEA** - [Download here](https://www.jetbrains.com/idea/download/) (Community Edition is fine)
-- **Git** - [Download here](https://git-scm.com/)
+1. Download `CosmeticsPlus-1.0.0.jar`
+2. Place it in your server's `plugins/` folder
+3. Restart your server
+4. Configure the plugin in `plugins/CosmeticsPlus/config.properties`
 
-### 1. Clone or Download
+## Commands
 
-```bash
-git clone https://github.com/yourusername/hytale-plugin-template.git
-cd hytale-plugin-template
-```
+| Command | Description | Permission |
+|---------|-------------|------------|
+| `/cosmetic list [type]` | List all cosmetics | cosmeticsplus.cosmetic |
+| `/cosmetic equip <id>` | Equip a cosmetic | cosmeticsplus.cosmetic |
+| `/cosmetic unequip <type>` | Unequip a cosmetic | cosmeticsplus.cosmetic |
+| `/cosmetic info <id>` | Get cosmetic info | cosmeticsplus.cosmetic |
+| `/cosmetic menu` | Open cosmetic menu | cosmeticsplus.cosmetic |
+| `/unlock <id>` | Unlock a cosmetic | cosmeticsplus.unlock |
 
-**The template builds immediately without any changes!**  
-You can customize it later when you're ready to develop your plugin.
+## Cosmetic Types
 
-### 2. Build Immediately (No Changes Needed!)
+- `HAT` - Hats and headgear
+- `WINGS` - Wing accessories
+- `PET` - Pet companions
+- `PARTICLE` - Particle effects
 
-The template works out-of-the-box:
+## Permissions
 
-```bash
-# Windows
-gradlew.bat shadowJar
+All cosmetics have individual permissions:
+- `cosmeticsplus.hat.crown` - Golden Crown
+- `cosmeticsplus.hat.tophat` - Top Hat
+- `cosmeticsplus.wings.angel` - Angel Wings
+- `cosmeticsplus.pet.wolf` - Wolf Pet
+- `cosmeticsplus.particle.heart` - Heart Trail
+- ...and many more!
 
-# Linux/Mac
-./gradlew shadowJar
-```
+## Configuration
 
-Your plugin JAR will be in: `build/libs/TemplatePlugin-1.0.0.jar`
+Edit `plugins/CosmeticsPlus/config.properties`:
 
-### 3. Customize Your Plugin (Optional)
-
-When ready to customize, edit these files:
-
-**`settings.gradle.kts`:**
-```kotlin
-rootProject.name = "your-plugin-name"
-```
-
-**`gradle.properties`:**
 ```properties
-pluginGroup=com.yourname
-pluginVersion=1.0.0
-pluginDescription=Your plugin description
+# Enable/disable cosmetic types
+cosmetics.hats.enabled=true
+cosmetics.wings.enabled=true
+cosmetics.pets.enabled=true
+cosmetics.particles.enabled=true
+
+# Storage configuration
+storage.type=json
+storage.path=plugins/CosmeticsPlus/playerdata
+
+# Customize messages
+messages.prefix=[Cosmetics] 
+messages.no_permission=You don't have permission!
+messages.cosmetic_unlocked=You unlocked the %cosmetic% cosmetic!
 ```
 
-**`src/main/resources/manifest.json`:**
-```json
-{
-  "Group": "YourName",
-  "Name": "YourPluginName",
-  "Main": "com.yourname.yourplugin.YourPlugin"
-}
-```
+## Development
 
-**Rename the main plugin class:**
-- Rename `src/main/java/com/example/templateplugin/TemplatePlugin.java`
-- Update package name to match your `pluginGroup`
-
-### 4. Build Your Plugin
+Build from source:
 
 ```bash
-# Windows
-gradlew.bat shadowJar
-
-# Linux/Mac
+git clone <repository-url>
+cd hytale-cosmetic-mod
 ./gradlew shadowJar
 ```
 
-Your plugin JAR will be in: `build/libs/YourPluginName-1.0.0.jar`
-
-### 5. Implement Your Plugin
-
-Write your plugin code in `src/main/java/`:
-- Commands
-- Event listeners
-- Services
-- Storage
-- Utilities
-
-See our [documentation](../Documentation/) for examples and patterns.
-
-### 6. Test Your Plugin (Automated!)
-
-```bash
-# Windows
-gradlew.bat runServer
-
-# Linux/Mac
-./gradlew runServer
-```
-
-This will:
-1. Download the Hytale server (cached for future runs)
-2. Build your plugin
-3. Copy it to the server's plugins folder
-4. Start the server with interactive console
-
----
-
-## Project Structure
-
-```
-TemplatePlugin/
-├── .github/workflows/
-│   └── build.yml                    # CI/CD workflow
-├── buildSrc/
-│   ├── build.gradle.kts             # Custom plugin configuration
-│   └── src/main/kotlin/
-│       └── RunHytalePlugin.kt       # Automated server testing
-├── src/main/
-│   ├── java/com/example/templateplugin/
-│   │   └── TemplatePlugin.java      # Minimal main class (example)
-│   └── resources/
-│       └── manifest.json            # Plugin metadata
-├── .gitignore                       # Git ignore rules
-├── build.gradle.kts                 # Build configuration
-├── gradle.properties                # Project properties
-├── settings.gradle.kts              # Project settings
-├── LICENSE                          # MIT License
-└── README.md                        # This file
-```
-
-**Note:** This is a minimal template. Create your own folder structure:
-- `commands/` - For command implementations
-- `listeners/` - For event listeners
-- `services/` - For business logic
-- `storage/` - For data persistence
-- `utils/` - For utility classes
-- `config/` - For configuration management
-
----
-
-## Development Workflow
-
-### Building
-
-```bash
-# Compile only
-./gradlew compileJava
-
-# Build plugin JAR
-./gradlew shadowJar
-
-# Clean and rebuild
-./gradlew clean shadowJar
-```
-
-### Testing
-
-```bash
-# Run server with your plugin
-./gradlew runServer
-
-# Run unit tests
-./gradlew test
-
-# Clean test server
-rm -rf run/
-```
-
-### Debugging
-
-```bash
-# Run server in debug mode
-./gradlew runServer -Pdebug
-
-# Then connect your IDE debugger to localhost:5005
-```
-
----
-
-## Customization
-
-### Adding Dependencies
-
-Edit `build.gradle.kts`:
-
-```kotlin
-dependencies {
-    // Hytale API (provided by server)
-    compileOnly(files("libs/hytale-server.jar"))
-    
-    // Your dependencies (will be bundled)
-    implementation("com.google.code.gson:gson:2.10.1")
-    
-    // Test dependencies
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
-}
-```
-
-### Configuring Server Testing
-
-**Run Hytale Server** - A Gradle plugin to download and run a Hytale server for development and testing purposes. The server files will be located in the `run/` directory of the project. Before starting the server it will compile (shadowJar task) and copy the plugin jar to the server's `plugins/` folder.
-
-**Usage:**
-
-Edit `build.gradle.kts`:
-
-```kotlin
-runHytale {
-    jarUrl = "url to hytale server jar"
-}
-```
-
-Run the server with:
-
-```bash
-# Windows
-gradlew.bat runServer
-
-# Linux/Mac
-./gradlew runServer
-```
-
-**Features:**
-- ✅ Automatic server JAR download and caching
-- ✅ Compiles and deploys your plugin automatically
-- ✅ Starts server with interactive console
-- ✅ One-command workflow: `./gradlew runServer`
-- ✅ Server files in `run/` directory (gitignored)
-
-### Implementing Your Plugin
-
-**Recommended folder structure:**
-```
-src/main/java/com/yourname/yourplugin/
-├── YourPlugin.java          # Main class
-├── commands/                # Commands
-├── listeners/               # Event listeners
-├── services/                # Business logic
-├── storage/                 # Data persistence
-├── config/                  # Configuration
-└── utils/                   # Utilities
-```
-
-**See our documentation for examples:**
-- [Getting Started with Plugins](../Documentation/07-getting-started-with-plugins.md)
-- [Advanced Plugin Patterns](../Documentation/12-advanced-plugin-patterns.md)
-- [Common Plugin Features](../Documentation/14-common-plugin-features.md)
-
----
-
-## CI/CD
-
-This template includes a GitHub Actions workflow that:
-
-1. ✅ Builds your plugin on every push
-2. ✅ Runs tests
-3. ✅ Uploads artifacts
-4. ✅ Creates releases (when you tag)
-
-### Creating a Release
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-GitHub Actions will automatically build and create a release with your plugin JAR.
-
----
-
-## Best Practices
-
-### ✅ DO:
-
-- Use the Service-Storage pattern for data management
-- Write unit tests for your business logic
-- Use structured logging (not `System.out.println`)
-- Handle errors gracefully
-- Document your public API
-- Version your releases semantically (1.0.0, 1.1.0, etc.)
-
-### ❌ DON'T:
-
-- Hardcode configuration values
-- Block the main thread with heavy operations
-- Ignore exceptions
-- Use deprecated APIs
-- Commit sensitive data (API keys, passwords)
-
----
-
-## Troubleshooting
-
-### Build Fails
-
-```bash
-# Clean and rebuild
-./gradlew clean build --refresh-dependencies
-```
-
-### Server Won't Start
-
-1. Check that `jarUrl` in `build.gradle.kts` is correct
-2. Verify Java 25 is installed: `java -version`
-3. Check logs in `run/logs/`
-
-### Plugin Not Loading
-
-1. Verify `manifest.json` has correct `Main` class
-2. Check server logs for errors
-3. Ensure all dependencies are bundled in JAR
-
----
-
-## Documentation
-
-For detailed guides on plugin development, see:
-
-- [Hytale Modding Documentation](https://github.com/yourusername/hytale-modding/tree/main/Documentation)
-- [Getting Started with Plugins](../Documentation/07-getting-started-with-plugins.md)
-- [Advanced Plugin Patterns](../Documentation/12-advanced-plugin-patterns.md)
-- [Common Plugin Features](../Documentation/14-common-plugin-features.md)
-
----
-
-## Contributing
-
-Contributions are welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
----
-
-## License
-
-This template is released under the MIT License. You are free to use it for any purpose.
-
----
+Output: `build/libs/CosmeticsPlus-1.0.0.jar`
+
+## Features for Server Owners
+
+- Monetize your server with cosmetic shops
+- Rank-based cosmetic unlocks
+- Event reward cosmetics
+- Player engagement booster
+- EULA-compliant monetization
+
+## Roadmap
+
+- [ ] GUI-based cosmetic menu
+- [ ] Cosmetic categories in GUI
+- [ ] Preview cosmetics before unlocking
+- [ ] Economy integration
+- [ ] Database storage support
+- [ ] Custom cosmetic creation tools
+- [ ] Animated cosmetics
+- [ ] Cosmetic bundles
 
 ## Support
 
-- **Issues:** [GitHub Issues](https://github.com/yourusername/hytale-plugin-template/issues)
-- **Documentation:** [Hytale Modding Docs](https://github.com/yourusername/hytale-modding)
-- **Community:** Join the Hytale modding community
+- Issues: GitHub Issues
+- Documentation: README.md
+- Community: Discord (coming soon)
 
----
+## License
+
+MIT License - Free to use and modify
 
 ## Credits
 
-Created by the Hytale modding community.
-
-Based on best practices from production Hytale plugins.
+Created by Cankayut
+Built with official Hytale Plugin Template
 
 ---
 
-**Happy Modding! 🎮**
+**Note:** This is a beta version. Some features may be experimental.
+
+Enjoy your new cosmetic system! 🎨✨
